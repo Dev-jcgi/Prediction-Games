@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predicción de Ventas de Videojuegos</title>
+</head>
+<body>
+    <h1>Introduce los detalles del juego</h1>
+    <form action="/predict" method="post">
+        <label for="genero">Género:</label><br>
+        <select name="genero" id="genero">
+            {% for genero in generos %}
+                <option value="{{ genero }}">{{ genero }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="plataforma">Plataforma:</label><br>
+        <select name="plataforma" id="plataforma">
+            {% for plataforma in plataformas %}
+                <option value="{{ plataforma }}">{{ plataforma }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="compania">Compañía de Desarrollo:</label><br>
+        <select name="compania" id="compania">
+            {% for compania in companias %}
+                <option value="{{ compania }}">{{ compania }}</option>
+            {% endfor %}
+        </select><br>
+        <input type="submit" value="Predecir Ventas">
+    </form>
+</body>
+</html>
