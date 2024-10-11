@@ -2,8 +2,7 @@
 
 ---
 
-![Logo de la Institución](http://www.imfe.mx/inicio/wp-content/uploads/2020/05/logo_imfe.jpg)
-
+![Data Ana](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjZxaG9sMzFscnZ4a2Vkc2pxbWd3Y3g2eTNweDI2anNteXlidDdlNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/doXBzUFJRxpaUbuaqz/giphy.webp)
 ---
 
 ## Autor: Juan Carlos González Ibarra
