@@ -3,7 +3,7 @@
 ![Data Analysis](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjZxaG9sMzFscnZ4a2Vkc2pxbWd3Y3g2eTNweDI2anNteXlidDdlNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/doXBzUFJRxpaUbuaqz/giphy.webp)
 ---
 
-## Author: Juan Carlos González Ibarra
+## Author: Juan Carlos González
 ## E-mail: jcgi.laboral@gmail.com
 ---
 
