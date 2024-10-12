@@ -407,7 +407,7 @@ The development companies with the highest sales are:
 
 ---
 
-### 4.6 AED Results
+### 4.6 EDA Results
 
 To link the analyses to data modeling, the strengths of each type of analysis are summarized according to the project’s objective:
 
@@ -457,337 +457,304 @@ By combining these analyses, a more comprehensive and data-backed view of the mo
 
 ---
 
-5. Data Modeling
+## 5. Data Modeling
 
 
-El modelado de datos se refiere al proceso de construcción de algoritmos (Machine Learning, Data Scinece, Big Data, entre otros), que pueden realizar predicciones o estimaciones sobre resultados futuros. En el contexto del **_Objetivo del proyecto_**, el modelado de datos que se va a desarrollar es para predecir el éxito o aceptación de un determinado género de juego en una plataforma específica.
+Data modeling refers to the process of building algorithms (Machine Learning, Data Science, Big Data, among others) that can make predictions or estimations about future outcomes. In the context of the **_Project Objective_**, the data modeling to be developed is aimed at predicting the success or acceptance of a particular game genre on a specific platform.
 
-Para aplicar el modelado de datos predictivo a esta hipótesis, se realizan los siguientes pasos:
+To apply predictive data modeling to this hypothesis, the following steps are undertaken:
 
-- Recopilación de datos: Obtener un conjunto de datos históricos que contenga información relevante sobre juegos similares al Serious Games que se desea desarrollar. Estos datos deben incluir características del juego, como género, plataforma, ventas, reseñas, etc.
+- **Data Collection**: Obtain a historical dataset containing relevant information about games similar to the Serious Games to be developed. This data should include game characteristics such as genre, platform, sales, reviews, etc.
 
-- Preparación de datos: Limpiar y preprocesar los datos, eliminando valores atípicos, datos faltantes y realizando transformaciones necesarias.
+- **Data Preparation**: Clean and preprocess the data by removing outliers, handling missing data, and performing necessary transformations.
 
-- Selección de variables: Identificar las variables o características del juego que pueden influir en su éxito o aceptación. Esto puede incluir el género, plataforma, características específicas del juego, datos demográficos de los jugadores, etc.
+- **Variable Selection**: Identify the variables or characteristics of the game that may influence its success or acceptance. This may include genre, platform, specific game features, demographic data of players, etc.
 
-- Construcción del modelo: Seleccionar el algoritmo de aprendizaje automático adecuado para el tipo de problema y datos disponibles. Algunos ejemplos podrían ser regresión logística, árboles de decisión, bosques aleatorios o redes neuronales.
+- **Model Construction**: Select the appropriate machine learning algorithm for the type of problem and available data. Examples may include logistic regression, decision trees, random forests, or neural networks.
 
-- Entrenamiento del modelo: Utilizar los datos históricos para entrenar el modelo, ajustando los parámetros del algoritmo y optimizando su rendimiento.
+- **Model Training**: Use the historical data to train the model, adjusting the algorithm's parameters and optimizing its performance.
 
-- Validación del modelo: Evaluar el rendimiento del modelo utilizando técnicas como la validación cruzada o la división de datos en conjuntos de entrenamiento y prueba. Medir métricas de rendimiento como precisión, recall, puntaje F1, etc.
+- **Model Validation**: Evaluate the model's performance using techniques such as cross-validation or splitting the data into training and testing sets. Measure performance metrics such as accuracy, recall, F1 score, etc.
 
-- Predicción y toma de decisiones: Utilizar el modelo entrenado para realizar predicciones sobre el éxito o aceptación de un determinado género de juego en una plataforma específica. Estas predicciones pueden ayudar en la toma de decisiones sobre el tipo de género y plataforma a desarrollar para el Serious Games.
+- **Prediction and Decision-Making**: Use the trained model to make predictions about the success or acceptance of a particular game genre on a specific platform. These predictions can aid in decision-making regarding the type of genre and platform to develop for the Serious Games.
+
 
 ---
 
-## 8.1 Recopilación de datos
+## 5.1 Data Collection
 
-Son los datos recopilados en formato csv y llamados:
+The data collected in CSV format are named:
 - consolas.csv.
 - consolas2.csv.
 - juegos_mas_vendidos.csv.
 - vgsales.csv.
 - video_games.csv.
 
+## 5.2 Data Preparation
 
-
-## 8.2 Preparación de datos
-
-
-Se tiene dos Data Frames resultantes:
+There are two resulting DataFrames:
 - df_consolas.
 - df_juegos.
 
-A partir del AED se concluyó que solo se va a utilizar df_juegos, por contener la información más cercana al objetivo del proyecto.
+Based on the Exploratory Data Analysis (EDA), it was concluded that only df_juegos will be used, as it contains information closest to the project's objective.
 
+## 5.3 Variable Selection
 
+The variables to be used for creating the model are:
+- 'Genre'.
+- 'Platform'.
+- 'Global_Sales'.
 
-## 8.3 Selección de variables
-
-
-Las variables para utilizar y crear el modelo son:
-- 'Género'.
-- 'Plataforma'.
-- 'Ventas_Globales'.
-
-Y su correlación positiva con:
+And their positive correlation with:
 - 'Ranking'.
-- 'Puntuacion_Reseña'.
+- 'Review_Score'.
 
 ---
 
-## 8.4 Construcción del modelo
+## 5.4 Model Construction
 
-En base al análisis de los diferentes resultados del AED, se tomó la decisión de crear varios "Modelos de Datos", por la razón de tener un porcentaje mayor de éxito al Objetivo del proyecto. Los modelos por crear son Modelos Supervisados, porque van a utilizar un conjunto de datos etiquetados, donde se conocen las 'Ventas_Globales' de los videojuegos (variable objetivo).
+Based on the analysis of the different results from the EDA, the decision was made to create several "Data Models" in order to achieve a higher success rate toward the project's objective. The models to be created are Supervised Models because they will use a labeled dataset, where the 'Global_Sales' of video games (target variable) are known.
 
-Los modelos por implementar:
+The models to implement:
 
-- Modelo de Clasificación: para predecir la categoría género de un videojuego con las variables de entrada que va a usar el algoritmo de clasificación **_Random Forest_**.
+- Classification Model: to predict the genre category of a video game using the input variables that the **_Random Forest_** classification algorithm will use.
 
-- Regresión lineal, que se va a usar para entrenar el modelo y ajustar los coeficientes de la regresión. La selección de este algoritmo es porque puede encontrar la mejor línea recta que se ajuste a los datos para predecir la variable objetivo. El modelo de regresión lineal va a predecir las ventas globales de videojuegos en función de las variables utilizadas ('Género', 'Plataforma' y 'Compañía de desarrollo'). Estas variables tienen características para predecir las ventas globales de los videojuegos y encontrar posibles relaciones o patrones entre ellas y las ventas globales.
-
-
----
-
-## 8.4.1 Modelo de Clasificación
-
-El modelo se define en los siguientes pasos:
-
-
-- Predecir la categoría 'Genero'.
-- Implementar el algoritmo Random Forest: es un algoritmo potente y versátil que puede manejar tanto variables categóricas como numéricas.
-- El algoritmo va a encontrar una frontera de decisión que separe las diferentes clases en el espacio de las variables de entrada.
-- Las variables de entrada son 'Plataforma', 'Ranking', 'Puntuacion_Reseña' y 'Ventas_Globales'.
-- La variable 'Plataforma' es categórica, por lo que se va a codificar usando el proceso llamado codificación one-hot. 
-- Dividir los datos en conjuntos de entrenamiento y prueba.
-- Predecir las etiquetas para los datos de prueba.
-- Calcular la precisión del modelo.
-- Mostrar el informe de clasificación.
+- Linear Regression, which will be used to train the model and adjust the regression coefficients. The selection of this algorithm is because it can find the best straight line that fits the data to predict the target variable. The linear regression model will predict the global sales of video games based on the used variables ('Genre', 'Platform', and 'Development Company'). These variables have characteristics to predict global sales of video games and find possible relationships or patterns between them and global sales.
 
 ---
 
+## 5.4.1 Classification Model
 
-## 8.4.2 Resultados del Modelo de Clasificación
+The model is defined in the following steps:
 
-Los resultados en base al informe de clasificación:
-
-
-- La precisión del modelo (Accuracy) es aproximadamente 0.23 o 23%, lo que significa que el modelo predice correctamente el género del videojuego en un 23% de los casos en el conjunto de pruebas. En términos generales, esto no es muy bueno.
-
-- La matriz de confusión muestra cuántas veces se predijo correcta o incorrectamente cada clase. Por ejemplo, la primera fila corresponde a la clase "Action". De 766 juegos de acción reales, el modelo predijo correctamente 275 de ellos. Sin embargo, también predijo incorrectamente 48 como "Adventure", 35 como "Fighting", 67 como "Misc", etc.
-
-
-
-El informe de clasificación proporciona más detalles sobre el rendimiento del modelo para cada clase de acuerdo con las métricas:
-
-
-
-- Precisión (Precisión): Es la proporción de predicciones positivas que fueron correctas, cuando el modelo predice "Action", es correcto el 35% de las veces.
-
-
-- Recall: Es la proporción de casos positivos reales que fueron detectados correctamente, el modelo detecta 36% de los juegos de acción reales.
-
-
-- F1-score: Es una métrica que combina precisión y recall en una sola cifra. Es útil cuando se quiere comparar dos o más modelos, especialmente si no tienes una preferencia específica entre precisión y recall.
-
-- Soporte (Support): Es el número de ocurrencias de cada clase en el conjunto de pruebas.
-
-
-Estos resultados sugieren que el modelo tiene problemas para predecir el género de los videojuegos basándose en las variables de entrada que se han utilizado. Puede ser útil explorar otras variables, crear nuevas características, usar otro algoritmo de clasificación o ajustar los parámetros del modelo actual para tratar de mejorar el rendimiento.
-
+- Predict the 'Genre' category.
+- Implement the Random Forest algorithm: a powerful and versatile algorithm that can handle both categorical and numerical variables.
+- The algorithm will find a decision boundary that separates the different classes in the input variable space.
+- The input variables are 'Platform', 'Ranking', 'Review_Score', and 'Global_Sales'.
+- The 'Platform' variable is categorical, so it will be encoded using the one-hot encoding process.
+- Split the data into training and testing sets.
+- Predict the labels for the test data.
+- Calculate the model's accuracy.
+- Display the classification report.
 
 ---
 
-## 8.4.3 Modelo de Regresión
+## 5.4.2 Classification Model Results
 
-El modelo se define en los siguientes pasos:
+The results based on the classification report:
 
-- Predecir la característica 'Ventas_Globales’.
-- Implementar el algoritmo regresión lineal: es un enfoque estadístico para modelar la relación entre una variable dependiente (o variable objetivo) y una o más variables independientes (o características).
-- El algoritmo va a predecir las 'Ventas_Globales' basándose en las características 'Genero', 'Plataforma' y 'Compañia_Desarrollo'.
-- Las variables de entrada son 'Genero', 'Plataforma' y 'Compañia_Desarrollo'.
-- Definir de las características y el objetivo: 'Genero', 'Plataforma' y 'Compañia_Desarrollo' son características, y 'Ventas_Globales' es el objetivo.
-- Convertir las características categóricas a numéricas, se va a utilizar variables ficticias (o dummies) para convertir estas características categóricas en numéricas.
-- Dividir los datos en conjuntos de entrenamiento y prueba.
-- Crear y entrenar el modelo de regresión lineal.
-- Predecir las ventas globales para el conjunto de prueba
-- Resultados del modelo de predicción.
+- The model's accuracy is approximately 0.23 or 23%, meaning the model correctly predicts the genre of the video game 23% of the time in the test set. Overall, this is not very good.
 
+- The confusion matrix shows how many times each class was predicted correctly or incorrectly. For example, the first row corresponds to the "Action" class. Out of 766 actual action games, the model correctly predicted 275 of them. However, it also incorrectly predicted 48 as "Adventure", 35 as "Fighting", 67 as "Misc", etc.
 
----
+The classification report provides more details on the model's performance for each class according to the metrics:
 
-## 8.4.4 Entrenamiento del modelo
+- Precision: It is the proportion of positive predictions that were correct; when the model predicts "Action", it is correct 35% of the time.
 
-El modelo se entrena utilizando las características 'Genero', 'Plataforma' y 'Compañia_Desarrollo' para predecir las ventas globales de los videojuegos. Las características categóricas se convierten en variables numéricas antes de entrenar el modelo.
+- Recall: It is the proportion of actual positive cases that were correctly detected; the model detects 36% of the actual action games.
 
-El proceso de entrenamiento del modelo:
+- F1-score: It is a metric that combines precision and recall into a single figure. It is useful when comparing two or more models, especially if you have no specific preference between precision and recall.
 
-- Se define el conjunto de características (X) y el objetivo (y) que se utilizarán para entrenar el modelo. Las características (X) se obtienen del DataFrame df_juegos y se seleccionan las columnas 'Genero', 'Plataforma' y 'Compañia_Desarrollo'.
+- Support: It is the number of occurrences of each class in the test set.
 
-- El objetivo (y) se obtiene del DataFrame df_juegos y se selecciona la columna 'Ventas_Globales'. Las características categóricas en X se convierten en variables numéricas utilizando la técnica de codificación one-hot mediante pd.get_dummies(X).
-
-- Los datos se dividen en conjuntos de entrenamiento (X_train, y_train) y de prueba (X_test, y_test) utilizando la función train_test_split(). Se utiliza un tamaño de prueba del 20% y se establece una semilla aleatoria para garantizar la reproducibilidad de los resultados.
-
-- Se crea un objeto de modelo de regresión lineal utilizando LinearRegression(). El modelo se entrena utilizando los datos de entrenamiento (X_train, y_train) mediante el método fit().
-
-Variables utilizadas:
-
-- X: El conjunto de características utilizado para entrenar el modelo. Incluye las columnas 'Genero', 'Plataforma' y 'Compañia_Desarrollo' del DataFrame df_juegos.
-- y: El objetivo del modelo, que corresponde a las ventas globales de los videojuegos (columna 'Ventas_Globales' en df_juegos).
-
+These results suggest that the model has difficulty predicting the genre of video games based on the input variables used. It may be useful to explore other variables, create new features, use another classification algorithm, or adjust the parameters of the current model to try to improve performance.
 
 ---
 
+## 5.4.3 Regression Model
 
-## 8.4.5 Validación del modelo
+The model is defined in the following steps:
 
-El proceso de validación del modelo:
-
-- Se crea un nuevo DataFrame llamado ‘nuevo_juego’ que representa un nuevo juego con atributos para los cuales deseamos predecir las ventas globales.
-- Los atributos categóricos del nuevo juego ('Genero', 'Plataforma', 'Compañia_Desarrollo') se convierten en variables numéricas utilizando la técnica de codificación one-hot mediante pd.get_dummies(nuevo_juego).
-- El DataFrame nuevo_juego se reindexa para asegurarse de que todas las columnas sean las mismas que las utilizadas durante el entrenamiento del modelo. Esto se logra mediante reindex(columns=X_train.columns, fill_value=0), donde X_train es el conjunto de características utilizado para entrenar el modelo.
-- Se utiliza el modelo entrenado (model) para predecir las ventas globales del nuevo juego utilizando el método predict(nuevo_juego).
-- El valor de las ventas globales predichas se almacena en la variable ventas_predichas.
-- Se imprime en pantalla el mensaje "Las ventas globales predichas para el nuevo juego son:" seguido del valor de ventas_predichas[0], que representa la predicción de ventas para el nuevo juego.
-
-La validación del modelo se realiza de tal forma que se va a asignar nuevos valores a los atributos específicos y predecir de ventas del nuevo juego. Esto puede permitir obtener una estimación de las ventas globales del nuevo juego basada en el modelo entrenado.
-
-
-## 8.4.6 Resultados del Modelo de Regresión
-
-La predicción del modelo utilizando regresión lineal a partir de los atributos 'Genero', 'Plataforma' y    'Compañia_Desarrollo' da como resultado: 
-
-**Las ventas globales predichas para el nuevo juego son: 0.1502685546875 de copias**
-
-El modelo entrenado puede realizar predicciones sobre el éxito de un determinado género de juego en una plataforma específica. Estas predicciones pueden ayudar en la toma de decisiones sobre el tipo de género y plataforma a desarrollar el Serious Games.
-
+- Predict the 'Global_Sales' feature.
+- Implement the linear regression algorithm: a statistical approach to modeling the relationship between a dependent variable (or target variable) and one or more independent variables (or features).
+- The algorithm will predict 'Global_Sales' based on the features 'Genre', 'Platform', and 'Development_Company'.
+- The input variables are 'Genre', 'Platform', and 'Development_Company'.
+- Define the features and the target: 'Genre', 'Platform', and 'Development_Company' are features, and 'Global_Sales' is the target.
+- Convert categorical features to numerical, using dummy variables to convert these categorical features into numerical.
+- Split the data into training and testing sets.
+- Create and train the linear regression model.
+- Predict global sales for the test set.
+- Show results of the prediction model.
 
 ---
 
-## 8.4.7 Modelo de Regresión Logística
+## 5.4.4 Model Training
 
-El modelo se define en los siguientes pasos:
+The model is trained using the features 'Genre', 'Platform', and 'Development_Company' to predict the global sales of video games. The categorical features are converted to numerical variables before training the model.
 
-- Predecir la probabilidad que un videojuego sea exitoso o no.
-- Implementar el algoritmo de Regresión Logística: es un algoritmo que ajusta los coeficientes de la regresión para encontrar la mejor línea de separación entre las clases.
-- El algoritmo va a predecir la probabilidad de clasificar correctamente los videojuegos como exitosos o no exitosos, va utilizar las variables 'Género', 'Plataforma' y 'Compañía de desarrollo'.
-- Las variables las variables predictoras 'Género', 'Plataforma' y 'Compañía de desarrollo'.
-- Definir las características 'Genero', 'Plataforma' y el objetivo 'Exitoso'.
-- Ajustar los coeficientes de la regresión logística para maximizar la probabilidad de clasificar correctamente los videojuegos como exitosos o no exitosos.
-- Calcular la media de las ventas globales y se utiliza como umbral para determinar qué juegos se considerarán exitosos.
-- Crear una nueva columna llamada 'Exitoso' que indica si las ventas globales superan el umbral.
-- Realizar la codificación one-hot de las columnas categóricas 'Genero' y 'Plataforma' utilizando el encoder OneHotEncoder de scikit-learn.
-- Dividir los datos en conjuntos de entrenamiento y prueba.
-- Crear el clasificador de regresión logística utilizando LogisticRegression.
-- Entrenar el modelo utilizando los datos de entrenamiento.
-- Predecir si un videojuego sea exitoso o no.
-- Evaluar el rendimiento del modelo en la clasificación de los juegos como exitosos o no exitosos.
+The model training process:
 
+- The feature set (X) and the target (y) to be used for training the model are defined. The features (X) are obtained from the DataFrame df_juegos, selecting the columns 'Genre', 'Platform', and 'Development_Company'.
 
----
+- The target (y) is obtained from the DataFrame df_juegos, selecting the 'Global_Sales' column. The categorical features in X are converted to numerical variables using the one-hot encoding technique via pd.get_dummies(X).
 
-## 8.4.8 Entrenamiento del modelo
+- The data is split into training (X_train, y_train) and testing (X_test, y_test) sets using the train_test_split() function. A test size of 20% is used, and a random seed is set to ensure reproducibility of results.
 
-- Se realiza un preprocesamiento de los datos. Se multiplica la columna 'Ventas_Globales' por 1,000,000 para obtener las ventas globales en unidades más manejables. 
+- A linear regression model object is created using LinearRegression(). The model is trained using the training data (X_train, y_train) via the fit() method.
 
-- Se calcula la media de las ventas globales y se utiliza como umbral para determinar qué juegos se considerarán exitosos.
+Variables used:
 
-- Se crea una nueva columna llamada 'Exitoso' que indica si las ventas globales superan el umbral.
-
-- Se asignan las variables predictoras (X) y la variable objetivo (Y) a partir del DataFrame 'df_juegos'. Las variables predictoras son 'Genero' y 'Plataforma', y la variable objetivo es 'Exitoso'.
-
-- Se realiza la codificación one-hot de las columnas categóricas 'Genero' y 'Plataforma' utilizando el encoder OneHotEncoder de scikit-learn. Esto es necesario para convertir las variables categóricas en variables numéricas que el modelo pueda entender.
-
-- Se dividen los datos en conjuntos de entrenamiento y prueba utilizando la función train_test_split. En este caso, se asigna el 20% de los datos al conjunto de prueba y el 80% restante al conjunto de entrenamiento.
-
-- Se crea el clasificador de regresión logística utilizando LogisticRegression de scikit-learn y se entrena el modelo utilizando los datos de entrenamiento (X_train, Y_train).
-
-- Al tener entrenado el modelo, se realizan predicciones en los datos de prueba utilizando el método predict del clasificador. Las predicciones se almacenan en la variable 'Y_pred'.
-
-- Se evalúa el modelo utilizando la función classification_report y confusion_matrix para obtener métricas de evaluación como la precisión, el recall, el F1-score y la matriz de confusión. Estas métricas permiten evaluar el rendimiento del modelo en la clasificación de los juegos como exitosos o no exitosos.
+- X: The feature set used to train the model, including the columns 'Genre', 'Platform', and 'Development_Company' from the df_juegos DataFrame.
+- y: The target of the model, corresponding to the global sales of video games (the 'Global_Sales' column in df_juegos).
 
 ---
 
-### 7.8.1 Validación del modelo
+## 5.4.5 Model Validation
 
-La validación del modelo se realiza utilizando técnicas de división de los datos en conjuntos de entrenamiento y prueba, y posteriormente evaluando el rendimiento del modelo en el conjunto de prueba.
+The model validation process:
 
-En este caso, se ha utilizado el método train_test_split de la biblioteca scikit-learn para dividir los datos en un conjunto de entrenamiento (X_train, Y_train) y un conjunto de prueba (X_test, Y_test). El parámetro test_size=0.2 indica que se ha asignado el 20% de los datos al conjunto de prueba, mientras que el 80% restante se ha utilizado para el entrenamiento.
+- A new DataFrame called 'new_game' is created to represent a new game with attributes for which we want to predict global sales.
+- The categorical attributes of the new game ('Genre', 'Platform', 'Development_Company') are converted to numerical variables using the one-hot encoding technique via pd.get_dummies(new_game).
+- The new_game DataFrame is reindexed to ensure all columns are the same as those used during model training. This is achieved using reindex(columns=X_train.columns, fill_value=0), where X_train is the feature set used to train the model.
+- The trained model (model) is used to predict the global sales of the new game using the predict(new_game) method.
+- The predicted global sales value is stored in the variable predicted_sales.
+- A message is printed to the screen: "The predicted global sales for the new game are:" followed by the value of predicted_sales[0], representing the sales prediction for the new game.
 
-Después de dividir los datos, se ha creado un clasificador de regresión logística utilizando LogisticRegression de scikit-learn. Este clasificador se ha entrenado utilizando los datos de entrenamiento (X_train, Y_train).
+The model validation is conducted in such a way that new values are assigned to the specific attributes and sales predictions for the new game are made. This can allow for an estimate of the global sales of the new game based on the trained model.
 
-Una vez entrenado el modelo, se han realizado predicciones en los datos de prueba utilizando el método predict del clasificador. Estas predicciones se han almacenado en la variable Y_pred.
+## 5.4.6 Regression Model Results
 
-Finalmente, se ha evaluado el modelo utilizando las métricas de evaluación classification_report y confusion_matrix. El classification_report proporciona información detallada sobre la precisión, el recall y el F1-score para cada clase, así como el soporte (número de instancias) de cada clase en el conjunto de prueba. La confusion_matrix muestra la matriz de confusión, que proporciona información sobre las predicciones correctas e incorrectas del modelo.
+The prediction of the model using linear regression based on the attributes 'Genre', 'Platform', and 'Development_Company' results in:
 
+**The predicted global sales for the new game are: 0.1502685546875 copies**
 
----
-
-## 8.4.9 Resultados del Modelo de Regresión Logística
-
-Los resultados en base al informe de clasificación:
-
-
-- Precisión: La precisión es la proporción de predicciones positivas que fueron realmente correctas. En tu caso, la precisión para la clase "False" (no exitoso) es del 87%, lo que significa que el 87% de las predicciones de juegos no exitosos fueron correctas. Para la clase "True" (exitoso), la precisión es del 61%, lo que indica que el 61% de las predicciones de juegos exitosos fueron correctas.
-
-- Recall: El recall, también conocido como sensibilidad o tasa de verdaderos positivos, es la proporción de casos positivos que fueron correctamente identificados por el modelo. En tu caso, el recall para la clase "False" es del 100%, lo que significa que el modelo identificó correctamente todos los juegos no exitosos. Sin embargo, el recall para la clase "True" es muy bajo, del 5%, lo que indica que el modelo no identificó adecuadamente la mayoría de los juegos exitosos.
-
-- F1-score: El F1-score es una medida que combina tanto la precisión como el recall en una sola métrica. Es útil cuando hay un desequilibrio de clases. En tu caso, el F1-score para la clase "False" es del 93%, lo que indica un buen equilibrio entre precisión y recall. Sin embargo, el F1-score para la clase "True" es muy bajo, del 9%, lo que indica un rendimiento deficiente en la detección de juegos exitosos.
-
-- Support: El "support" representa el número de muestras de cada clase en los datos de prueba.
-
-- Accuracy: La precisión global del modelo en predecir correctamente ambas clases es del 87%. Sin embargo, debido al desequilibrio de clases, esta métrica puede ser engañosa.
-
-- Matriz de confusión: La matriz de confusión muestra la distribución de las predicciones en cada clase. En tu caso, el modelo predijo correctamente 3109 juegos no exitosos y 22 juegos exitosos. Sin embargo, también hubo 456 juegos exitosos clasificados erróneamente como no exitosos y 14 juegos no exitosos clasificados erróneamente como exitosos.
-
-Estos resultados sugieren que el modelo parece tener un buen desempeño en la clasificación de juegos no exitosos, pero un desempeño deficiente en la clasificación de juegos exitosos. Esto podría indicar que hay un desequilibrio de clases en los datos o que el modelo necesita ajustes o mejoras para detectar adecuadamente los juegos exitosos.
-
+The trained model can make predictions about the success of a specific game genre on a specific platform. These predictions can assist in decision-making regarding which genre and platform to develop for Serious Games.
 
 ---
 
-8.5 Predicción y toma de decisiones
-Las predicciones de los diferentes modelos:
+## 5.4.7 Logistic Regression Model
 
-Resultados del Modelo de Clasificación: el modelo tiene problemas para predecir el género de los videojuegos basándose en las variables de entrada que se han utilizado.
-Resultados del Modelo de Regresión Lineal: el modelo a partir de los atributos 'Genero', 'Plataforma' y 'Compañia_Desarrollo' da como resultado "las ventas globales predichas para el nuevo juego son: 0.1502685546875 de copias".
-Resultados del Modelo de Regresión Logística: el modelo no tiene resultados satisfactorios, tiene dificultades para identificar correctamente los videojuegos exitosos.
-Por lo que la toma de decisiones se basa en el Objetivo de proyecto y el resultado de los Modelos de datos, se decide que el modelo más adecuado para utilizar es el Modelo de Regresión Lineal, que se diseñó para predecir un valor numérico continuo (ventas globales).
+The model is defined in the following steps:
 
-En este caso, el modelo de regresión lineal fue el único que produjo una predicción directamente utilizable, al dar un valor de la cantidad de millones de copias al introducir los atributos:
-
-'Genero': Ejemplo del valor a introducir ('Action').
-'Plataforma': Ejemplo del valor a introducir ('PC').
-'Compañia_Desarrollo': Ejemplo del valor a introducir ('Capcom').
-Los modelos de clasificación y regresión logística, por otro lado, se utilizan para predecir categorías o clases, y en el contexto, se demostró tener dificultades para realizar predicciones precisas en el género de un videojuego o si un videojuego será exitoso o no.
-
-Sin embargo, dada la baja precisión de los modelos, se puede explorar otras características del conjunto de datos o probar diferentes modelos (árboles de regresión, de soporte vectorial o las redes neuronales). Además, puede ser útil recolectar más datos, o intentar ajustar los parámetros de los modelos para mejorar la precisión de las predicciones.
-
-
-# 9. Conclusión
-
-En el análisis de los datos, se evaluaron tres tipos diferentes de modelos predictivos: un modelo de clasificación, un modelo de regresión lineal y un modelo de regresión logística. Cada uno de estos modelos tiene su utilidad y es útil en diferentes contextos.
-
-Sin embargo, en base a los resultados obtenidos y al objetivo específico de este proyecto, se concluye que el modelo de regresión lineal es el más adecuado para predecir las ventas globales de un videojuego basado en atributos como el género, la plataforma y la compañía de desarrollo del juego. Los otros dos modelos, de clasificación y regresión logística, demostraron tener dificultades para realizar predicciones precisas en el contexto de este problema, ya que tuvieron problemas el primero para predecir el género de un videojuego y el segundo para predecir si un videojuego fuera exitoso.
-
-A pesar de que se obtuvieron algunos resultados útiles, se hace evidente que hay margen para mejorar estos modelos. En concreto, sería útil explorar otras características que podrían influir en las ventas globales de un videojuego, como la fecha de lanzamiento del juego, las calificaciones recibidas por el juego, o incluso la presencia de ciertos personajes o temáticas en el juego. También puede ser útil probar con diferentes tipos de modelos, como los árboles de decisión, máquinas de soporte de vectores o redes neuronales artificiales, que pueden ser más eficaces en ciertos contextos.
-
-Asimismo, sería beneficioso recolectar más datos y posiblemente ajustar los parámetros de los modelos para mejorar la precisión de las predicciones. Sin embargo, la recolección de datos adicionales siempre debe hacerse de manera ética y con el consentimiento adecuado, y debe tenerse en cuenta que ajustar demasiado los modelos puede llevar a un sobreajuste, donde el modelo se desempeña muy bien en los datos de entrenamiento, pero mal en los datos de prueba.
-
-En resumen, aunque el modelo de regresión lineal fue el que dio los mejores resultados en este proyecto, hay mucho margen para mejorar y explorar otras opciones. El análisis de datos y la modelización son procesos iterativos, y siempre hay espacio para aprender, mejorar y probar nuevas ideas.
-
+- Predict the probability that a video game will be successful or not.
+- Implement the Logistic Regression algorithm: an algorithm that adjusts the regression coefficients to find the best separating line between classes.
+- The algorithm will predict the probability of correctly classifying video games as successful or not successful, using the variables 'Genre', 'Platform', and 'Development Company'.
+- The predictor variables are 'Genre', 'Platform', and 'Development Company'.
+- Define the features 'Genre', 'Platform', and the target 'Successful'.
+- Adjust the coefficients of logistic regression to maximize the probability of correctly classifying video games as successful or not successful.
+- Calculate the mean of global sales and use it as a threshold to determine which games will be considered successful.
+- Create a new column called 'Successful' that indicates whether the global sales exceed the threshold.
+- Perform one-hot encoding on the categorical columns 'Genre' and 'Platform' using the OneHotEncoder from scikit-learn.
+- Split the data into training and testing sets.
+- Create the logistic regression classifier using LogisticRegression.
+- Train the model using the training data.
+- Predict whether a video game is successful or not.
+- Evaluate the model's performance in classifying games as successful or not successful.
 
 ---
 
-# 10. Bibliográfia
+## 5.4.8 Model Training
 
-- Documentación oficial de Python: https://docs.python.org/3/
-- Documentación oficial de Pandas: https://pandas.pydata.org/docs/
-- Documentación oficial de Matplotlib: https://matplotlib.org/stable/contents.html
-- Documentación oficial de Seaborn: https://seaborn.pydata.org
-- Documentación oficial de Scikit-learn: https://scikit-learn.org/stable/
-- Documentación oficial de Numpy: https://numpy.org/doc/stable/
-- Analisis Exploratorio de Datos https://www.aprendemachinelearning.com/analisis-exploratorio-de-datos-pandas-python/
-- Conceptos en Python https://www.geeksforgeeks.org
-- Dudas https://stackoverflow.com/questions/tagged/pandas+python
-- Analisis de datos https://ocw.uc3m.es/course/view.php?id=230
-- Diccionarios de datos en data frame https://github.com/nsheikh23/COVID_StockMarket_Analysis/blob/master/52_Week.ipynb
-- Procesamiento de data frames en pandas https://barcelonageeks.com/eliminar-una-o-varias-columnas-de-pyspark-dataframe/
-- Data Clean https://github.com/mramshaw/Data-Cleaning
-- Ploteo de datos https://github.com/tomimester/python-histogram/blob/master/plot-histogram-python-pandas.ipynb
-- Data Cleaning in Python: the Ultimate Guide (2020) https://towardsdatascience.com/data-cleaning-in-python-the-ultimate-guide-2020-c63b88bf0a0d
-- Regresión lineal en Python: un análisis detallado https://www.cienciadedatos.net/documentos/py10-regresion-lineal-python.html
-- Aplicando Machine Learning para predecir éxitos de videojuegos https://www.saturdays.ai/projects/Videojuegos.html
-- Machine Learning para la predicción de ventas https://www.aprendemachinelearning.com/regresion-lineal-en-espanol-con-python/
+- A data preprocessing is performed. The 'Global_Sales' column is multiplied by 1,000,000 to obtain global sales in more manageable units.
+
+- The mean of global sales is calculated and used as a threshold to determine which games will be considered successful.
+
+- A new column
+- A new column named 'Successful' is created, indicating whether global sales exceed the threshold.
+
+- The predictor variables (X) and the target variable (Y) are assigned from the DataFrame 'df_games'. The predictor variables are 'Genre' and 'Platform', while the target variable is 'Successful'.
+
+- One-hot encoding is performed on the categorical columns 'Genre' and 'Platform' using the OneHotEncoder from scikit-learn. This is necessary to convert categorical variables into numerical variables that the model can understand.
+
+- The data is split into training and testing sets using the train_test_split function. In this case, 20% of the data is assigned to the testing set and the remaining 80% to the training set.
+
+- The logistic regression classifier is created using LogisticRegression from scikit-learn and the model is trained using the training data (X_train, Y_train).
+
+- Once the model is trained, predictions are made on the testing data using the classifier's predict method. The predictions are stored in the variable 'Y_pred'.
+
+- The model is evaluated using the classification_report and confusion_matrix functions to obtain evaluation metrics such as precision, recall, F1-score, and the confusion matrix. These metrics allow for assessing the model's performance in classifying games as successful or unsuccessful.
+
+---
+
+### 5.4.8.1 Model Validation
+
+The model validation is performed using techniques that split the data into training and testing sets, and subsequently evaluate the model's performance on the testing set.
+
+In this case, the train_test_split method from the scikit-learn library has been used to split the data into a training set (X_train, Y_train) and a testing set (X_test, Y_test). The parameter test_size=0.2 indicates that 20% of the data has been assigned to the testing set, while the remaining 80% has been used for training.
+
+After splitting the data, a logistic regression classifier was created using LogisticRegression from scikit-learn. This classifier was trained using the training data (X_train, Y_train).
+
+Once the model is trained, predictions were made on the testing data using the classifier's predict method. These predictions were stored in the variable Y_pred.
+
+Finally, the model was evaluated using the evaluation metrics classification_report and confusion_matrix. The classification_report provides detailed information about precision, recall, and F1-score for each class, as well as support (the number of instances) for each class in the testing set. The confusion_matrix displays the confusion matrix, which provides information about the model's correct and incorrect predictions.
+
+---
+
+## 5.4.9 Logistic Regression Model Results
+
+The results based on the classification report:
+
+- **Precision**: Precision is the proportion of positive predictions that were actually correct. In your case, the precision for the "False" class (not successful) is 87%, meaning that 87% of the predictions of unsuccessful games were correct. For the "True" class (successful), the precision is 61%, indicating that 61% of the predictions of successful games were correct.
+
+- **Recall**: Recall, also known as sensitivity or true positive rate, is the proportion of positive cases that were correctly identified by the model. In your case, the recall for the "False" class is 100%, meaning that the model correctly identified all unsuccessful games. However, the recall for the "True" class is very low, at 5%, indicating that the model did not adequately identify most successful games.
+
+- **F1-score**: The F1-score is a measure that combines both precision and recall into a single metric. It is useful when there is class imbalance. In your case, the F1-score for the "False" class is 93%, indicating a good balance between precision and recall. However, the F1-score for the "True" class is very low, at 9%, indicating poor performance in detecting successful games.
+
+- **Support**: The "support" represents the number of samples for each class in the testing data.
+
+- **Accuracy**: The overall accuracy of the model in correctly predicting both classes is 87%. However, due to class imbalance, this metric can be misleading.
+
+- **Confusion Matrix**: The confusion matrix shows the distribution of predictions for each class. In your case, the model correctly predicted 3109 unsuccessful games and 22 successful games. However, there were also 456 successful games misclassified as unsuccessful and 14 unsuccessful games misclassified as successful.
+
+These results suggest that the model appears to perform well in classifying unsuccessful games but poorly in classifying successful games. This could indicate a class imbalance in the data or that the model requires adjustments or improvements to adequately detect successful games.
+
+---
+
+### 5.5 Prediction and Decision Making
+
+The predictions from the different models:
+
+- **Classification Model Results**: The model has difficulty predicting the genre of video games based on the input variables that have been used.
+  
+- **Linear Regression Model Results**: The model based on the attributes 'Genre', 'Platform', and 'Development_Company' results in "the predicted global sales for the new game are: 0.1502685546875 copies".
+  
+- **Logistic Regression Model Results**: The model has unsatisfactory results, struggling to correctly identify successful video games.
+
+Thus, decision-making is based on the project objective and the results of the data models. It is decided that the most suitable model to use is the Linear Regression Model, which was designed to predict a continuous numerical value (global sales).
+
+In this case, the linear regression model was the only one that produced a directly usable prediction by providing a value for the number of millions of copies when entering the attributes:
+
+- **'Genre'**: Example value to enter ('Action').
+- **'Platform'**: Example value to enter ('PC').
+- **'Development_Company'**: Example value to enter ('Capcom').
+
+The classification and logistic regression models, on the other hand, are used to predict categories or classes, and in this context, they demonstrated difficulty making accurate predictions regarding the genre of a video game or whether a video game will be successful or not.
+
+However, given the low precision of the models, other features of the dataset could be explored, or different models (regression trees, support vector machines, or neural networks) could be tested. Additionally, it might be useful to collect more data or attempt to adjust the model parameters to improve the accuracy of predictions.
+
+# 6. Conclusion
+
+In the analysis of the data, three different types of predictive models were evaluated: a classification model, a linear regression model, and a logistic regression model. Each of these models has its utility and is useful in different contexts.
+
+However, based on the results obtained and the specific objective of this project, it is concluded that the linear regression model is the most suitable for predicting global sales of a video game based on attributes such as genre, platform, and the game development company. The other two models, classification and logistic regression, demonstrated difficulties in making accurate predictions in the context of this problem, as the first struggled to predict the genre of a video game and the second had issues predicting whether a video game would be successful.
+
+Although some useful results were obtained, it is evident that there is room for improvement in these models. Specifically, it would be beneficial to explore other features that could influence the global sales of a video game, such as the game's release date, ratings received, or even the presence of certain characters or themes in the game. It may also be helpful to experiment with different types of models, such as decision trees, support vector machines, or artificial neural networks, which may be more effective in certain contexts.
+
+Furthermore, collecting more data and possibly tuning the model parameters to improve prediction accuracy would be beneficial. However, additional data collection should always be done ethically and with proper consent, and it should be noted that excessive tuning of models can lead to overfitting, where the model performs very well on training data but poorly on test data.
+
+In summary, while the linear regression model yielded the best results in this project, there is ample room for improvement and exploration of other options. Data analysis and modeling are iterative processes, and there is always room to learn, improve, and test new ideas.
+
+---
+
+# 7. References
+
+- Official Python Documentation: https://docs.python.org/3/
+- Official Pandas Documentation: https://pandas.pydata.org/docs/
+- Official Matplotlib Documentation: https://matplotlib.org/stable/contents.html
+- Official Seaborn Documentation: https://seaborn.pydata.org
+- Official Scikit-learn Documentation: https://scikit-learn.org/stable/
+- Official Numpy Documentation: https://numpy.org/doc/stable/
+- Exploratory Data Analysis: https://www.aprendemachinelearning.com/analisis-exploratorio-de-datos-pandas-python/
+- Concepts in Python: https://www.geeksforgeeks.org
+- Questions: https://stackoverflow.com/questions/tagged/pandas+python
+- Data Analysis: https://ocw.uc3m.es/course/view.php?id=230
+- Data Frame Dictionaries: https://github.com/nsheikh23/COVID_StockMarket_Analysis/blob/master/52_Week.ipynb
+- Data Frame Processing in Pandas: https://barcelonageeks.com/eliminar-una-o-varias-columnas-de-pyspark-dataframe/
+- Data Clean: https://github.com/mramshaw/Data-Cleaning
+- Data Plotting: https://github.com/tomimester/python-histogram/blob/master/plot-histogram-python-pandas.ipynb
+- Data Cleaning in Python: the Ultimate Guide (2020): https://towardsdatascience.com/data-cleaning-in-python-the-ultimate-guide-2020-c63b88bf0a0d
+- Linear Regression in Python: a Detailed Analysis: https://www.cienciadedatos.net/documentos/py10-regresion-lineal-python.html
+- Applying Machine Learning to Predict Video Game Success: https://www.saturdays.ai/projects/Videojuegos.html
+- Machine Learning for Sales Prediction: https://www.aprendemachinelearning.com/regresion-lineal-en-espanol-con-python/
 - McKinney, Wes. Python for Data Analysis. O'Reilly Media, Inc, 2017.
 - VanderPlas, Jake. Python Data Science Handbook: Essential Tools for Working with Data. O'Reilly Media, Inc, 2016.
-
-
-
-
-
-
-
-
-
-
-
