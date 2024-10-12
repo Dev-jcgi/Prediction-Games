@@ -294,7 +294,7 @@ The goal is to identify patterns or trends in sales over time, such as peaks or 
 
 ---
 
-### 6.1.1 Relevant Information:
+### 4.1.1 Relevant Information:
 
 - The average global sales amount to 500,000 copies over a span of 37 years.
 - The highest sales peaks occurred between 2007 and 2008.
