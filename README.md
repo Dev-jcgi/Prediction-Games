@@ -18,8 +18,8 @@
 3. Data Clean
 4. Exploratory Data Analysis
 5. Data Modeling
-6. Results
-7. Conclusion
+6. Conclusion
+7. References
 
 
 ---
